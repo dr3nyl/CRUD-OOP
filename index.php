@@ -149,7 +149,7 @@ $(document).ready(function(){
                     });
                     $('#staticBackdrop').modal('hide');
                     $('#addUser')[0].reset();
-                   // showUsers();
+                   
                 }
 
             });
