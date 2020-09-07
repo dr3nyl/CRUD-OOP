@@ -149,12 +149,54 @@ $(document).ready(function(){
                     });
                     $('#staticBackdrop').modal('hide');
                     $('#addUser')[0].reset();
-                   
+                    $('#usersTable').DataTable().ajax.reload();
                 }
 
             });
         }
      });
+
+    //  $( "#delBtn" ).click(function(e) {
+
+    //         $.ajax({
+    //             url:'action.php',
+    //             type:'POST',
+    //             data: {action:'destroy'},
+    //             success:function(data){
+    //                 swal({
+    //                     title: "Success!",
+    //                     text: "You deleted a user!",
+    //                     icon: "success",
+    //                     button: "Done",
+    //                 });
+                   
+    //             }
+
+    //         });
+        
+    //  });
+
+     $('#usersTable tbody').on('click', '.delBtn', function (){
+
+        var id = $(this).closest('tr').find('td:eq(0)').text(); // amend the index as needed
+
+        $.ajax({
+                url:'action.php',
+                type:'POST',
+                data: {action:'destroy',
+                        id:id},
+                success:function(data){
+                    swal({
+                        title: "Success!",
+                        text: "You deleted a user with the ID of: " +id,
+                        icon: "success",
+                        button: "Done",
+                    });
+                    $('#usersTable').DataTable().ajax.reload();
+                }
+
+            });
+    });
 
     
 });
